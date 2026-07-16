@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: doc-fast
+  datasource:
+    url: jdbc:sqlite:../database/database.db
+    driver-class-name: org.sqlite.JDBC
+  jpa:
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+
+server:
+  address: 0.0.0.0
+  port: 8080
+
+rfid:
+  serial:
+    enabled: true 
+    port: COM3
+    baud-rate: 115200
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+

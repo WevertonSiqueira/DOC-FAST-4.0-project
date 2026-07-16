@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DOC FAST 4.0</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <div id="accessGate" class="access-gate">
+      <div class="access-gate__card">
+        <div class="badge">DOC FAST 4.0</div>
+        <h1>Aproxime o cartão para acessar o sistema</h1>
+        <p>
+          A autenticação é feita pelo RFID. O sistema libera as telas somente
+          quando o cartão autorizado for lido pelo Arduino.
+        </p>
+        <div class="access-gate__status">
+          <span id="gateConnectionStatus">Backend offline</span>
+          <span id="gateRfidStatus">Aguardando cartão</span>
+        </div>
+        <form id="uidForm" class="rfid-form">
+          <label for="apiUrl">Backend Java</label>
+          <input id="apiUrl" type="url" value="http://localhost:8080" />
+          <label for="uidInput">UID para teste manual</label>
+          <input id="uidInput" type="text" value="04:A1:B2:C3:D4" />
+          <div class="rfid-form__actions">
+            <button type="submit">Validar UID</button>
+            <button type="button" id="testBackend">Cartão demo</button>
+          </div>
+        </form>
+        <p id="authResult" class="auth-result">Encoste o cartão ou teste o UID manualmente.</p>
+        <p id="lastUidStatus" class="auth-result">Último UID: nenhum cartão lido ainda.</p>
+        <p id="lastLineStatus" class="auth-result">Última linha serial: nenhuma.</p>
+      </div>
+    </div>
+
+    <div id="appShell" class="app-shell app-shell--locked">
+      <header class="topbar">
+        <div>
+          <h1>DOC FAST 4.0</h1>
+          <p>Digitalização e integração de desenhos técnicos</p>
+        </div>
+        <div class="status">
+          <span id="connectionStatus">Offline</span>
+          <span id="rfidStatus">Bloqueado</span>
+        </div>
+      </header>
+
+      <main class="shell">
+        <aside class="sidebar">
+          <button data-screen="dashboard" class="nav-btn nav-btn--active">Painel</button>
+          <button data-screen="documents" class="nav-btn">Documentos</button>
+          <button data-screen="search" class="nav-btn">Pesquisa</button>
+          <button data-screen="voice" class="nav-btn">Comando de Voz</button>
+          <button data-screen="audit" class="nav-btn">Auditoria</button>
+          <button data-screen="settings" class="nav-btn">Configurações</button>
+        </aside>
+
+        <section class="workspace">
+          <section class="screen screen--active" data-screen="dashboard">
+            <div class="viewer__panel">
+              <h2>Painel do Operador</h2>
+              <div class="info-grid">
+                <div><span>Operador</span><strong id="currentUserName">Não autenticado</strong></div>
+                <div><span>Matrícula</span><strong id="currentUserMatricula">-</strong></div>
+                <div><span>Setor</span><strong id="currentUserSector">-</strong></div>
+                <div><span>Perfil</span><strong id="currentUserRole">-</strong></div>
+              </div>
+              <p id="dashboardMessage">Aguardando autenticação por RFID.</p>
+            </div>
+          </section>
+
+          <section class="screen" data-screen="documents">
+            <div class="viewer__panel">
+              <h2>Documentos</h2>
+              <div class="cards">
+                <article class="card">
+                  <strong>Desenhos Técnicos</strong>
+                  <p>Consulta dos PDFs com controle de revisão.</p>
+                </article>
+                <article class="card">
+                  <strong>Procedimentos</strong>
+                  <p>Instruções operacionais do posto de trabalho.</p>
+                </article>
+                <article class="card">
+                  <strong>Diagramas Elétricos</strong>
+                  <p>Visualização técnica com rastreabilidade.</p>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section class="screen" data-screen="search">
+            <div class="viewer__panel">
+              <h2>Pesquisa</h2>
+              <p>Busca por código, setor, máquina e conteúdo do PDF.</p>
+            </div>
+          </section>
+
+          <section class="screen" data-screen="voice">
+            <div class="viewer__panel">
+              <h2>Comando de Voz</h2>
+              <p>Integração futura com Web Speech API para navegação e atalhos.</p>
+            </div>
+          </section>
+
+          <section class="screen" data-screen="audit">
+            <div class="viewer__panel">
+              <h2>Auditoria</h2>
+              <p>Registro de acesso, usuário, data/hora e documento consultado.</p>
+            </div>
+          </section>
+
+          <section class="screen" data-screen="settings">
+            <div class="viewer__panel">
+              <h2>Configurações</h2>
+              <p>Idioma, tempo de sessão, preferências visuais e modo offline.</p>
+            </div>
+          </section>
+
+          <div class="viewer__footer">
+            <button id="zoomOut">-</button>
+            <button id="zoomIn">+</button>
+            <button id="toggleOffline">Alternar offline</button>
+            <button id="lockSystem">Bloquear sistema</button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>

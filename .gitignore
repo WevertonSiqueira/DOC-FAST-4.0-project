@@ -1,0 +1,21 @@
+.DS_Store
+Thumbs.db
+*.log
+.vs/
+
+# Java
+backend-java/target/
+*.class
+
+# Python
+backend-python/.venv/
+backend-python/__pycache__/
+*.pyc
+
+# Frontend
+frontend/node_modules/
+
+# SQLite
+*.db
+*.sqlite
+*.sqlite3
