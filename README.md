@@ -25,7 +25,6 @@ O DOC FAST 4.0 centraliza a documentacao tecnica e entrega acesso por RFID, com:
 
 ## Equipe
 
-> Preencher com os integrantes conforme o documento oficial do projeto.
 
 - Nome 1 - funcao
 - Nome 2 - funcao
